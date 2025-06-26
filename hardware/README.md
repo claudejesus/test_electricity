@@ -19,24 +19,45 @@ Connecting to WiFi....
 03:12:52.105 -> HTTP Response Code: -1
 03:12:52.105 -> Server Response: 
 03:13:34.137 -> HTTP Response Code: -1
-03:13:34.137 -> Server Response: 
-03:14:16.135 -> HTTP Response Code: -1
-03:14:16.135 -> Server Response: 
-03:14:58.126 -> HTTP Response Code: -1
-03:14:58.126 -> Server Response: 
-03:15:40.117 -> HTTP Response Code: -1
-03:15:40.117 -> Server Response: 
-03:16:22.129 -> HTTP Response Code: -1
-03:16:22.129 -> Server Response: 
-03:17:04.116 -> HTTP Response Code: -1
-03:17:04.116 -> Server Response: 
-03:17:46.124 -> HTTP Response Code: -1
-03:17:46.124 -> Server Response: 
-03:18:28.124 -> HTTP Response Code: -1
-03:18:28.124 -> Server Response: 
-03:19:10.125 -> HTTP Response Code: -1
+
  
+03:37:42.333 -> Connecting to WiFi...
+03:37:43.811 -> WiFi Connected!
+03:37:43.811 -> IP Address: 192.168.137.35
+03:37:44.900 -> HTTP Response Code: 200
+03:37:44.900 -> Server Response: OK
+03:38:16.546 -> HTTP Response Code: 200
+03:38:16.546 -> Server Response: OK
+03:38:47.899 -> HTTP Response Code: 200
+03:38:47.899 -> Server Response: OK
+03:39:19.111 -> HTTP Response Code: 200
+03:39:19.111 -> Server Response: OK
+03:39:50.574 -> HTTP Response Code: 200
+03:39:50.574 -> Server Response: OK
+03:40:21.972 -> HTTP Response Code: 200
+03:40:21.972 -> Server Response: OK
+03:40:53.323 -> HTTP Response Code: 200
+03:40:53.323 -> Server Response: OK
+03:41:24.953 -> HTTP Response Code: 200
+03:41:24.953 -> Server Response: OK
+03:41:56.299 -> HTTP Response Code: 200
+03:41:56.299 -> Server Response: OK
+03:42:27.850 -> HTTP Response Code: 200
+03:42:27.850 -> Server Response: OK
+03:42:59.170 -> HTTP Response Code: 200
+03:42:59.170 -> Server Response: OK
+03:43:30.528 -> HTTP Response Code: 200
+03:43:30.528 -> Server Response: OK
+03:44:02.078 -> HTTP Response Code: 200
+03:44:02.078 -> Server Response: OK
+03:44:33.692 -> HTTP Response Code: 200
+03:44:33.692 -> Server Response: OK
+03:45:04.931 -> HTTP Response Code: 200
+03:45:04.931 -> Server Response: OK
+03:45:36.241 -> HTTP Response Code: 200
+03:45:36.241 -> Server Response: OK
 
 
 ### GET
+
 

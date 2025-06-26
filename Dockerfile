@@ -1,10 +1,14 @@
 FROM php:8.2-apache
 
-# Enable mod_rewrite for .htaccess support
-RUN a2enmod rewrite
+# Install mysqli extension and enable mod_rewrite
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli && a2enmod rewrite
 
-# Copy all source code into Apache server folder
+# Copy all project files to the Apache web root
 COPY . /var/www/html/
 
-# Expose port 80 (used by Render)
+# Set working directory and permissions (optional but recommended)
+WORKDIR /var/www/html
+RUN chown -R www-data:www-data /var/www/html
+
+# Expose port 80 for web traffic
 EXPOSE 80

@@ -1,0 +1,69 @@
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <ArduinoJson.h>
+
+// WiFi credentials
+const char* ssid = "jesus";
+const char* password = "jesus1234";
+
+// Backend GET URL (with tenant_id=1)
+const char* getURL = "http://berthe-001-site1.jtempurl.com/hardware_api.php?tenant_id=1";
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+
+  Serial.println("Connecting to WiFi...");
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nWiFi connected!");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
+
+  // Test GET request
+  testGetRequest();
+}
+
+void loop() {
+  // Nothing in loop – run once
+}
+
+void testGetRequest() {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin(getURL);
+    int httpCode = http.GET();
+
+    if (httpCode == 200) {
+      String payload = http.getString();
+      Serial.println("GET Response:");
+      Serial.println(payload);
+
+      // Parse JSON
+      DynamicJsonDocument doc(1024);
+      DeserializationError error = deserializeJson(doc, payload);
+
+      if (!error) {
+        float current_kw = doc["current_kw"];
+        const char* status = doc["status"];
+        Serial.print("Current kWh: ");
+        Serial.println(current_kw);
+        Serial.print("Status: ");
+        Serial.println(status);
+      } else {
+        Serial.println("JSON Parse Failed");
+      }
+    } else {
+      Serial.print("GET Failed. HTTP Code: ");
+      Serial.println(httpCode);
+    }
+
+    http.end();
+  } else {
+    Serial.println("WiFi not connected.");
+  }
+}

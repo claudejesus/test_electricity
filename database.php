@@ -14,15 +14,17 @@
 <?php
 // database.php
 
-$host = 'your-db-name.region.psdb.io';  // host ya PlanetScale (uzabone muri credentials)
-$db = 'electricity_system';              // izina rya database
-$user = 'claudejesus';                 // username yo kuri PlanetScale
-$pass = 'claudesegatware@23';                 // password
-$port = 3306;                           // port isanzwe ya MySQL
+$host = 'electricity-system.us-east.psdb.io';  // shyiramo hostname nyayo ubonye
+$db = 'electricity_system';                     // izina rya database
+$user = 'claudejesus';                          // username
+$pass = 'claudesegatware@23';                   // password
+$port = 3306;
 
 $conn = new mysqli($host, $user, $pass, $db, $port);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+echo "Connection successful!";
 ?>

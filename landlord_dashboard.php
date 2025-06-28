@@ -56,7 +56,12 @@ $stmtCashpower->close();
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         margin-bottom: 20px;
     }
-    
+        /* body { font-family: Arial; margin: 30px; } */
+    table { border-collapse: collapse; width: 60%; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    th { background-color: #f2f2f2; }
+    .connected { color: green; font-weight: bold; }
+    .disconnected { color: red; font-weight: bold; }
     #welcome {
         display: block;
     }
@@ -174,6 +179,7 @@ $stmtCashpower->close();
             <a href="#distributed"><i class="fas fa-bolt"></i> Distribute Power</a>
             <a href="#transactions"><i class="fas fa-exchange-alt"></i> Transactions</a>
             <a href="#powerStatus"><i class="fas fa-home"></i> powerStatus</a>
+            <!-- <a href="#powerStatus1"><i class="fas fa-home"></i> powerStatus1</a> -->
             <a href="#Comments"><i class="fas fa-comments"></i> View Comments</a> 
         </div>
     </div>
@@ -421,25 +427,30 @@ $stmtCashpower->close();
                     </table>
                 </div>
             </div>
-            <!-- Add under any section -->
+            <!-- Add under any section --> 
             <div id="powerStatus" class="form-section">
                 <h4 class="section-header"><i class="fas fa-battery-three-quarters"></i> Tenant Power Usage</h4>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr><th>Tenant ID</th><th>Current Power (kWh)</th><th>Status</th></tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $res = $conn->query("SELECT t.name, p.tenant_id, p.current_kw, p.status FROM tenant_power p JOIN tenants t ON t.id = p.tenant_id WHERE t.landlord_id = $landlord_id");
-                    while ($row = $res->fetch_assoc()):
-                    ?>
+
+                <?php
+                    $conn = new mysqli("localhost", "root", "", "electricity_system");
+                    $result = $conn->query("SELECT * FROM tenant_power");
+                ?>
+                            <h2 style="text-align:center">Live Tenant Power Status</h2>
+                <table>
                     <tr>
-                        <td><?= htmlspecialchars($row['tenant_id']) ?> - <?= htmlspecialchars($row['name']) ?></td>
-                        <td><?= round($row['current_kw'], 2) ?></td>
-                        <td><span class="badge bg-<?= $row['status'] === 'connected' ? 'success' : 'danger' ?>"><?= ucfirst($row['status']) ?></span></td>
+                    <th>Tenant ID</th>
+                    <th>Current (kW)</th>
+                    <th>Status</th>
+                    <th>Updated</th>
+                    </tr>
+                    <?php while($row = $result->fetch_assoc()): ?>
+                    <tr>
+                    <td><?= $row['tenant_id'] ?></td>
+                    <td><?= number_format($row['current_kw'], 3) ?></td>
+                    <td><?= $row['status'] ?></td>
+                    <td><?= $row['updated_at'] ?></td>
                     </tr>
                     <?php endwhile; ?>
-                    </tbody>
                 </table>
             </div>
 
@@ -474,7 +485,7 @@ $stmtCashpower->close();
             </div>
         </div>
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -435,7 +435,7 @@ $stmtCashpower->close();
                     $conn = new mysqli("localhost", "root", "", "electricity_system");
                     $result = $conn->query("SELECT * FROM tenant_power");
                 ?>
-                            <h2 style="text-align:center">Live Tenant Power Status</h2>
+                <h2 style="text-align:center">Live Tenant Power Status</h2>
                 <table>
                     <tr>
                     <th>Tenant ID</th>
@@ -485,7 +485,7 @@ $stmtCashpower->close();
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -537,46 +537,46 @@ $stmtCashpower->close();
             //         alert('An error occurred while distributing power.');
             //     });
             // });
-document.getElementById('distributeForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
+        document.getElementById('distributeForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
 
-    // Clear previous messages
-    const oldMessage = document.getElementById('distribute-status-message');
-    if (oldMessage) oldMessage.remove();
+            // Clear previous messages
+            const oldMessage = document.getElementById('distribute-status-message');
+            if (oldMessage) oldMessage.remove();
 
-    fetch(form.action, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Network response was not OK");
-        }
-        return response.json();
-    })
-    .then(data => {
-        const messageDiv = document.createElement('div');
-        messageDiv.id = 'distribute-status-message';
-        messageDiv.innerHTML = data.html;
-        document.getElementById('distributed').prepend(messageDiv);
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not OK");
+                }
+                return response.json();
+            })
+            .then(data => {
+                const messageDiv = document.createElement('div');
+                messageDiv.id = 'distribute-status-message';
+                messageDiv.innerHTML = data.html;
+                document.getElementById('distributed').prepend(messageDiv);
 
-        if (data.success) {
-            form.reset();
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        const messageDiv = document.createElement('div');
-        messageDiv.id = 'distribute-status-message';
-        messageDiv.innerHTML = `
-            <div class="alert alert-danger">
-                <strong>❌ Server error:</strong> Unable to process the request. Please try again.
-            </div>`;
-        document.getElementById('distributed').prepend(messageDiv);
-    });
-});
+                if (data.success) {
+                    form.reset();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const messageDiv = document.createElement('div');
+                messageDiv.id = 'distribute-status-message';
+                messageDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        <strong>❌ Server error:</strong> Unable to process the request. Please try again.
+                    </div>`;
+                document.getElementById('distributed').prepend(messageDiv);
+            });
+        });
 
 
         });

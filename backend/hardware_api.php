@@ -2,7 +2,8 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "tenant_power_control";
+// $db = "tenant_power_control";
+$db = "electricity_system";
 
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {

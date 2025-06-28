@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "tenant_power_control");
+$conn = new mysqli("localhost", "root", "", "electricity_system");
 $result = $conn->query("SELECT * FROM tenant_power");
 ?>
 

@@ -2,9 +2,11 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-$conn = new mysqli("localhost", "root", "", "tenant_power_control");
+// $conn = new mysqli("localhost", "root", "", "tenant_power_control");
+$conn = new mysqli("localhost", "root", "", "electricity_system");
 
-$result = $conn->query("SELECT tenant_id, current_kw, status FROM tenant_power");
+// $result = $conn->query("SELECT tenant_id, current_kw, status FROM tenant_power");
+$result = $conn->query("SELECT tenant_id, current_kw, status, updated_at FROM tenant_power");
 
 $rows = [];
 while ($row = $result->fetch_assoc()) {

@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($tenant_id && $used_kw) {
         $stmt = $conn->prepare("UPDATE tenant_power SET current_kw = current_kw - ? WHERE tenant_id = ?");
-        $stmt->bind_param("di", $used_kw, $tenant_id);
+        $stmt->bind_param("di", $tenant_id, $used_kw);
         $stmt->execute();
         $stmt->close();
 
